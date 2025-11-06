@@ -15,7 +15,7 @@ class AuthController {
         // Set JWT in cookie
         res.cookie('token', accessToken, {
             httpOnly: true,
-            secure:false, // process.env.NODE_ENV === 'production',
+            secure: process.env.NODE_ENV === 'production',
             sameSite: 'lax',
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         });
@@ -39,7 +39,7 @@ class AuthController {
         // Set JWT in cookie
         res.cookie('token', accessToken, {
             httpOnly: true,
-            secure: false,   // process.env.NODE_ENV === 'production'
+            secure: process.env.NODE_ENV === 'production',
             sameSite: 'lax',
             maxAge: 7 * 24 * 60 * 60 * 1000,
         });
