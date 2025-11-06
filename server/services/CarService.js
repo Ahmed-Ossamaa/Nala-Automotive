@@ -1,5 +1,5 @@
 const Car = require('../models/Car');
-const BaseService = require('./baseService');
+const BaseService = require('./BaseService');
 
 
 class CarService extends BaseService {

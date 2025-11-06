@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User.js');
-const BaseService = require('./baseService');
+const BaseService = require('./BaseService');
 const ApiError = require('../utils/ApiError');
 
 class AuthService extends BaseService {
