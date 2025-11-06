@@ -7,7 +7,7 @@ dotenv.config();
 
 const cookieParser = require('cookie-parser');
 const ApiError = require('./utils/ApiError');
-const errorHandler = require('./middleware/errorHandler');
+const errorHandler = require('./middleWare/errorHandler');
 const authRoute = require('./routes/auth');
 const adminRoute = require('./routes/admin');
 const carRoute = require('./routes/cars');
