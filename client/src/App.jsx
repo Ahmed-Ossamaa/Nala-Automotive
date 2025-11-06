@@ -6,7 +6,7 @@ import { useAuthStore } from './store/authStore';
 
 // Layouts
 import { Layout } from './components/layout/layout';
-import { AdminLayout } from './components/layout/AdminLayout';
+import { AdminLayout } from './components/layout/adminLayout';
 
 // Public Pages
 import { Home } from './pages/Home';

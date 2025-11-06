@@ -21,7 +21,7 @@ import { Button } from "../components/common/Button";
 import { useAuth } from "../hooks/useAuth";
 import { useEffect } from "react";
 
-// AnimatedNumber Component (unchanged)
+// AnimatedNumber Component 
 function AnimatedNumber({ value }) {
     const count = useMotionValue(0);
     const rounded = useTransform(count, latest => Math.round(latest));
@@ -41,21 +41,21 @@ export const Home = () => {
             title: "Smart Search",
             desc: "Find your perfect car with advanced filters and AI-powered search technology.",
             gradient: "from-blue-500 to-cyan-500",
-            glowColor: "shadow-blue-500/20" // <-- For elegant glow
+            glowColor: "shadow-blue-500/20"
         },
         {
             icon: <MessageSquare className="w-8 h-8" />,
             title: "Direct Inquiries",
             desc: "Connect directly with sellers and dealerships instantly with one simple click.",
             gradient: "from-purple-500 to-pink-500",
-            glowColor: "shadow-purple-500/20" // <-- For elegant glow
+            glowColor: "shadow-purple-500/20"
         },
         {
             icon: <Shield className="w-8 h-8" />,
             title: "Verified Listings",
             desc: "Every car is verified for authenticity and transparency you can trust.",
             gradient: "from-green-500 to-emerald-500",
-            glowColor: "shadow-green-500/20" // <-- For elegant glow
+            glowColor: "shadow-green-500/20"
         }
     ];
 
@@ -252,7 +252,7 @@ export const Home = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.15, duration: 0.5 }}
-                                whileHover={{ scale: 1.02 }} 
+                                whileHover={{ scale: 1.02 }}
                                 className={`group relative bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200/50`}
                             >
                                 <div
@@ -310,7 +310,7 @@ export const Home = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.15 }}
-                                whileHover={{ scale: 1.03, y: -4 }} 
+                                whileHover={{ scale: 1.03, y: -4 }}
                                 className="relative bg-white p-8 rounded-2xl shadow-lg border border-gray-100 text-center transition-transform"
                             >
                                 {/* circular Step Number */}
@@ -340,7 +340,7 @@ export const Home = () => {
                     <div className="w-[800px] h-[400px] bg-linear-to-tr from-blue-600/20 via-purple-600/10 to-transparent blur-3xl opacity-50" />
                 </div>
 
-                {/* 2. Added subtle grid pattern for texture (like the hero) */}
+
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-size-[64px_64px] opacity-50"></div>
 
                 <Container className="relative z-10 text-center text-white">
@@ -350,7 +350,7 @@ export const Home = () => {
                         viewport={{ once: true }}
                         className="max-w-3xl mx-auto"
                     >
-                        {/* Badge, text, and buttons remain the same as they work well here */}
+
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-medium mb-6">
                             <TrendingUp className="w-4 h-4" />
                             Join Thousands of Happy Buyers
