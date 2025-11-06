@@ -12,7 +12,7 @@ import { AdminLayout } from './components/layout/adminLayout';
 import { Home } from './pages/Home';
 import { Login } from './pages/Auth/Login';
 import { Register } from './pages/Auth/Register';
-import { CarsList } from './pages/Cars/carsList';
+import { CarsList } from './pages/Cars/CarsList';
 import { PublicCarDetails } from './pages/Cars/PuplicCarDetails';
 import { CustomerCarDetails } from './pages/Cars/CarCaustomerDetails';
 
