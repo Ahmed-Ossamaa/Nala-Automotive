@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { protect,isAdmin } = require('../middleWare/authMW');
-const upload = require('../middleware/upload'); 
+const upload = require('../middleWare/upload'); 
 const adminController = require('../controllers/AdminController');
 const validate = require('../middleWare/validation');
 const { createCarSchema, updateCarSchema } = require('../validation/carValidator');
