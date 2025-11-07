@@ -16,7 +16,7 @@ import {
     KeyRound
 } from "lucide-react";
 
-import { Container } from "../components/layout/Container";
+import { Container } from "../components/layout/container";
 import { Button } from "../components/common/Button";
 import { useAuth } from "../hooks/useAuth";
 import { useEffect } from "react";

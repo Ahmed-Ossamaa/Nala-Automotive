@@ -1,5 +1,5 @@
 import { useMyInquiries } from '../../hooks/useInquiries';
-import { Container } from '../../components/layout/Container';
+import { Container } from '../../components/layout/container';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
 import { EmptyState } from '../../components/common/EmptyState';
 import { Badge } from '../../components/common/Badge';

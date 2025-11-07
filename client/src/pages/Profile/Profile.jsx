@@ -1,10 +1,6 @@
-// ============================================
-// src/pages/Profile/Profile.jsx - Refactored & Clean
-// ============================================
-
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/useAuth';
-import { Container } from '../../components/layout/Container';
+import { Container } from '../../components/layout/container';
 import { Button } from '../../components/common/Button';
 import { Input } from '../../components/common/Input';
 import { Badge } from '../../components/common/Badge';
@@ -118,7 +114,7 @@ export const Profile = () => {
                                     </div>
                                 </div>
 
-                                {/* Email (Read-only) */}
+                                {/* Email "cant change" */}
                                 <div className="flex items-start gap-3">
                                     <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center shrink-0 mt-1">
                                         <Mail size={20} className="text-gray-600" />

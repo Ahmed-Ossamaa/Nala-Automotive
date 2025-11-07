@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Shield, Award, Users, ArrowRight, TrendingUp } from "lucide-react";
 
 
-import { Container } from "../components/layout/Container";
+import { Container } from "../components/layout/container";
 import { Button } from "../components/common/Button";
 
 

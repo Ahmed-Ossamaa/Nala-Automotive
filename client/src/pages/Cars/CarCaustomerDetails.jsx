@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useCustomerCar } from '../../hooks/useCars';
 import { useCreateInquiry } from '../../hooks/useInquiries';
-import { Container } from '../../components/layout/Container';
+import { Container } from '../../components/layout/container';
 import { Button } from '../../components/common/Button';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
 import { Modal } from '../../components/common/Modal';

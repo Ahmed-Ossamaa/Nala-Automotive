@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { usePublicCar } from '../../hooks/useCars';
-import { Container } from '../../components/layout/Container';
+import { Container } from '../../components/layout/container';
 import { Button } from '../../components/common/Button';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
 import { Calendar, Eye } from 'lucide-react';
@@ -18,10 +18,10 @@ export const PublicCarDetails = () => {
         if (car) { // Only run this if we have a car
             const incrementView = async () => {
                 try {
-                    // Fire-and-forget request. We don't need the response.
+
                     await axios.patch(`/cars/public/${id}/view`);
                 } catch (err) {
-                    // It's okay if this fails, don't block the UI
+                    // no throw
                     console.error('Failed to increment view count', err);
                 }
             };

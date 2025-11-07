@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { usePublicCars } from '../../hooks/useCars';
-import { Container } from '../../components/layout/Container';
+import { Container } from '../../components/layout/container';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
 import { EmptyState } from '../../components/common/EmptyState';
 import { Car } from 'lucide-react';
