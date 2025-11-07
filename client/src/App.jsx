@@ -17,7 +17,7 @@ import { PublicCarDetails } from './pages/Cars/PuplicCarDetails';
 import { CustomerCarDetails } from './pages/Cars/CarCaustomerDetails';
 
 // Protected Pages (Customer)
-import { MyInquiries } from './pages/inquiries/MyInquiries';
+import { MyInquiries } from './pages/Inquiries/MyInquiries';
 import { Profile } from './pages/Profile/Profile';
 
 // Admin Pages
