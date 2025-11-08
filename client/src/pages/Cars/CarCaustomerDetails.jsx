@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState } from 'react';
-import { useCustomerCar } from '../../hooks/useCars';
+import { useCustomerCar, useIncrementCarView } from '../../hooks/useCars';
 import { useCreateInquiry } from '../../hooks/useInquiries';
 import { Container } from '../../components/layout/container';
 import { Button } from '../../components/common/Button';
@@ -10,6 +10,7 @@ import { Input } from '../../components/common/Input';
 import { Calendar, Gauge, Fuel, Cog, Palette, MessageSquare } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { Badge } from '../../components/common/Badge';
+
 
 export const CustomerCarDetails = () => {
     const { id } = useParams();
@@ -21,8 +22,11 @@ export const CustomerCarDetails = () => {
     const { register, handleSubmit, reset } = useForm();
 
     const car = data?.data?.car;
+    // console.log(car);
     const images = car?.images || [];
     const currentImage = images[selectedImage] || car?.thumbnail;
+
+    useIncrementCarView(car, id);//for car views per visit (wrapped in useEffect)
 
     const onSubmitInquiry = async (formData) => {
         try {
@@ -34,7 +38,7 @@ export const CustomerCarDetails = () => {
             setShowInquiryModal(false);
             reset();
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     };
 
@@ -50,7 +54,7 @@ export const CustomerCarDetails = () => {
         return (
             <Container className="py-20">
                 <div className="text-center">
-                    <p className="text-red-600">Car not found</p>
+                    <p className="text-red-600">Car not found or unavailable</p>
                 </div>
             </Container>
         );
@@ -174,11 +178,14 @@ export const CustomerCarDetails = () => {
                     <div className="space-y-3">
                         <Button
                             variant="primary"
-                            className="w-full"
+                            className="flex w-full"
                             onClick={() => setShowInquiryModal(true)}
                         >
-                            <MessageSquare size={20} className="mr-2" />
-                            Inquire About This Car
+                            <div className="flex mx-auto">
+                                <MessageSquare size={20} className="mr-2" />
+                                Inquire About This Car
+                            </div>
+
                         </Button>
                         <Link to="/cars">
                             <Button variant="secondary" className="w-full">

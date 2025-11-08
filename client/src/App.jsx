@@ -15,7 +15,8 @@ import { Register } from './pages/Auth/Register';
 import { CarsList } from './pages/Cars/CarsList';
 import { PublicCarDetails } from './pages/Cars/PuplicCarDetails';
 import { CustomerCarDetails } from './pages/Cars/CarCaustomerDetails';
-
+import { About } from './pages/About';
+import{Contact} from './pages/Contact'
 // Protected Pages (Customer)
 import { MyInquiries } from './pages/Inquiries/MyInquiries';
 import { Profile } from './pages/Profile/Profile';
@@ -31,7 +32,7 @@ import { AdminInquiries } from './pages/Admin/AdminInquiries';
 import { ProtectedRoute } from './components/guards/ProtectedRoute';
 import { AdminRoute } from './components/guards/AdminRoute';
 import { GuestRoute } from './components/guards/GuestRoute';
-import { About } from './pages/About';
+
 
 // ]React Query client
 const queryClient = new QueryClient({
@@ -81,7 +82,8 @@ function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Layout><Home /></Layout>} />
-          <Route path="/About" element={<Layout><About /></Layout>} />
+          <Route path="/about" element={<Layout><About /></Layout>} />
+          <Route path="/contact" element={<Layout><Contact /></Layout>} />
           <Route path="/cars" element={<Layout><CarsList /></Layout>} />
           <Route path="/cars/:id" element={<Layout><PublicCarDetails /></Layout>} />
 

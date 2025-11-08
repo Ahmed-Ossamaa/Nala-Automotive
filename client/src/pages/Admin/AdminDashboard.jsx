@@ -164,12 +164,12 @@ export const AdminDashboard = () => {
                             <div key={car._id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                                 <img
                                     src={car.thumbnail?.url}
-                                    alt={`${car.make} ${car.model}`}
+                                    alt={`${car.brand} ${car.model}`}
                                     className="w-16 h-16 object-cover rounded-lg"
                                 />
                                 <div className="flex-1">
                                     <p className="font-semibold text-gray-900">
-                                        {car.year} {car.make} {car.model}
+                                        {car.brand} {car.model} {car.year}
                                     </p>
                                     <p className="text-sm text-gray-600">{car.views} views</p>
                                 </div>

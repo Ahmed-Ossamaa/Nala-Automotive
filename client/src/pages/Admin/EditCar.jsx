@@ -87,7 +87,7 @@ export const EditCar = () => {
 
             <form onSubmit={handleSubmit(onSubmit)} className="max-w-6xl">
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 space-y-6">
-                    
+
                     {/* Basic Information */}
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Basic Information</h3>
@@ -96,13 +96,13 @@ export const EditCar = () => {
                             <Input label="Model *" {...register('model', { required: true })} />
                             <Input label="Year *" type="number" {...register('year', { required: true })} />
                             <Input label="Color" {...register('color')} />
-                            <Select label= "Status" 
-                            options={[
-                                { value: 'available', label: 'Available' },
-                                { value: 'pending', label: 'Pending' },
-                                { value: 'sold', label: 'Sold' },
-                            ]}
-                            {...register('status')} />
+                            <Select label="Status"
+                                options={[
+                                    { value: 'available', label: 'Available' },
+                                    { value: 'pending', label: 'Pending' },
+                                    { value: 'sold', label: 'Sold' },
+                                ]}
+                                {...register('status')} />
                         </div>
                     </div>
 
@@ -210,6 +210,28 @@ export const EditCar = () => {
                                 type="date"
                                 {...register('purchaseDate')}
                             />
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-semibold mb-4">Description</h3>
+                            <textarea
+                                className="input-field"
+                                rows={3}
+                                placeholder="Brief description (visible to guests)"
+                                {...register('basicDescription')}
+                            />
+                            <textarea
+                                className="input-field mt-4"
+                                rows={5}
+                                placeholder="Detailed description (visible to logged-in users)"
+                                {...register('detailedDescription')}
+                            />
+                            <textarea
+                                className="input-field mt-4"
+                                rows={3}
+                                placeholder="Admin notes"
+                                {...register('adminNotes')}
+                            />
+
                         </div>
                     </div>
 

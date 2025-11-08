@@ -12,7 +12,7 @@ export const useCarStore = create((set) => ({
     setPublicCars: (cars) => set({ publicCars: cars }),
     setCustomerCars: (cars) => set({ customerCars: cars }),
 
-    // Favorites (local storage)
+    // Favorites (local storage)... for later
     favorites: [],
     addFavorite: (carId) => set((state) => ({
         favorites: [...state.favorites, carId]

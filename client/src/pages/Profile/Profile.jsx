@@ -213,20 +213,27 @@ export const Profile = () => {
                                     />
 
                                     <div className="flex gap-3 pt-4 border-t">
-                                        <Button type="submit" variant="primary" className="flex-1">
-                                            <Check size={18} className="mr-2" />
+                                        <Button type="submit" 
+                                        variant="primary" 
+                                        className="flex-2 ">
+                                            <div className="flex mx-auto justify-self-center">
+                                            <Check size={18} className="mr-2 mt-1" />
                                             Update Password
+                                            </div>
                                         </Button>
                                         <Button
                                             type="button"
                                             variant="secondary"
+                                            className="flex-1"
                                             onClick={() => {
                                                 setShowPasswordForm(false);
                                                 resetPassword();
                                             }}
                                         >
-                                            <X size={18} className="mr-2" />
+                                            <div className='mx-auto flex justify-self-center'>
+                                                <X size={18} className="mr-2 mt-1" />
                                             Cancel
+                                            </div>
                                         </Button>
                                     </div>
                                 </form>

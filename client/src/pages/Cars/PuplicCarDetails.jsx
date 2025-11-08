@@ -1,34 +1,20 @@
 import { useParams, Link } from 'react-router-dom';
-import { usePublicCar } from '../../hooks/useCars';
+import { useIncrementCarView, usePublicCar } from '../../hooks/useCars';
 import { Container } from '../../components/layout/container';
 import { Button } from '../../components/common/Button';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
 import { Calendar, Eye } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import axios from '../../api/axios';
+import { useState } from 'react';
+
 
 export const PublicCarDetails = () => {
     const { id } = useParams();
     const { data, isLoading, error } = usePublicCar(id);
     const [selectedImage, setSelectedImage] = useState(0);
 
-
     const car = data?.data?.car;
-    useEffect(() => {
-        if (car) { // Only run this if we have a car
-            const incrementView = async () => {
-                try {
 
-                    await axios.patch(`/cars/public/${id}/view`);
-                } catch (err) {
-                    // no throw
-                    console.error('Failed to increment view count', err);
-                }
-            };
-
-            incrementView();
-        }
-    }, [car, id]);
+    useIncrementCarView(car, id);//for car views per visit (wrapped in useEffect)
 
     if (isLoading) {
         return (
@@ -44,7 +30,7 @@ export const PublicCarDetails = () => {
         return (
             <Container className="py-20">
                 <div className="text-center">
-                    <p className="text-red-600">Car not found</p>
+                    <p className="text-red-600">Car not found or Unavailable</p>
                     <Link to="/cars">
                         <Button className="mt-4">Back to Cars</Button>
                     </Link>

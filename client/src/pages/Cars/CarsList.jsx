@@ -53,21 +53,24 @@ export const CarsList = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {cars.map((car) => (
                             <Link key={car._id} to={user ? `/cars/details/${car._id}` : `/cars/${car._id}`}>
-                                <div className="card hover:shadow-lg transition-all">
+                                <div className="card hover:shadow-lg transition-all ">
                                     <div className="relative mb-4">
                                         <img
                                             src={car.thumbnail?.url}
                                             alt={`${car.brand} ${car.model}`}
-                                            className="w-full h-48 object-cover rounded-lg"
+                                            className="w-full h-50 object-contain rounded-lg"
                                         />
-                                        <div className="absolute top-2 right-2 bg-white px-3 py-1 rounded-full text-sm font-semibold">
-                                            {car.year}
+                                        <div className={`absolute top-1 -left-4  rounded-full overflow-hidden text-center text-[11px]  font-bold
+                                            text-white py-1 px-3 -rotate-45 shadow-md ${car.status === 'available' ? 'bg-green-600' : 'bg-red-600'}` }>
+                                            {car.status.toUpperCase()}
                                         </div>
                                     </div>
 
+
                                     <h3 className="text-xl font-semibold mb-2">
-                                        {car.brand} {car.model}
+                                        {car.brand} {car.model} {car.year}
                                     </h3>
+                                    
 
                                     {car.basicDescription && (
                                         <p className="text-gray-600 text-sm mb-4 line-clamp-2">
@@ -76,9 +79,11 @@ export const CarsList = () => {
                                     )}
                                     {!user && (
                                         <div className="pt-4 border-t border-gray-100">
+                                            <Link to="/login">
                                             <p className="text-primary-600 font-semibold">
-                                                Login to see price
+                                                Login to see price and more details
                                             </p>
+                                            </Link>
                                         </div>
                                     )}
 

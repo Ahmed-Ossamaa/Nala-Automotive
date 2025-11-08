@@ -36,9 +36,9 @@ export const CreateCar = () => {
         formData.append('images', image);
       });
     }
-    for (let pair of formData.entries()) {
-      console.log(pair[0], pair[1]);
-    }
+    // for (let pair of formData.entries()) {
+    //   console.log(pair[0], pair[1]);
+    // }
     try {
       await createCar.mutateAsync(formData);
       navigate('/admin/cars');

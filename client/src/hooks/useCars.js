@@ -2,6 +2,8 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { carsAPI } from '../api/cars.api';
 import { adminAPI } from '../api/admin.api';
 import toast from 'react-hot-toast';
+import { useEffect } from 'react';
+import axios from '../api/axios';
 
 // Get public cars
 export const usePublicCars = () => {
@@ -19,7 +21,7 @@ export const usePublicCar = (id) => {
         queryFn: () => carsAPI.getPublicCarById(id),
         enabled: !!id,
     });
-    
+
 };
 
 // Get customer cars (authenticated)
@@ -131,4 +133,20 @@ export const useDeleteCar = () => {
             toast.error(error.message || 'Failed to delete car');
         },
     });
+};
+
+export const useIncrementCarView = (car, id) => {
+    useEffect(() => {
+        if (car) {
+            const incrementView = async () => {
+                try {
+                    await axios.patch(`/cars/public/${id}/view`);
+                } catch (err) {
+                    console.error('Failed to increment view count', err);
+                }
+            };
+
+            incrementView();
+        }
+    }, [car, id]); 
 };

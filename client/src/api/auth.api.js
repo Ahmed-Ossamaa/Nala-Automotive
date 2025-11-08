@@ -3,12 +3,12 @@ import axios from './axios';
 export const authAPI = {
     // Register new user
     register: async (userData) => {
-        return await axios.post('/auth/register', userData,{withCredentials: true});
+        return await axios.post('/auth/register', userData);
     },
 
     // Login user
     login: async (credentials) => {
-        return await axios.post('/auth/login', credentials,{withCredentials: true});
+        return await axios.post('/auth/login', credentials);
     },
 
     // Logout user

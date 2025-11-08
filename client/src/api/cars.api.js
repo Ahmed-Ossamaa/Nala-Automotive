@@ -4,14 +4,12 @@ export const carsAPI = {
     // Get public cars (no auth)
     getPublicCars: async () => {
         const car = await axios.get('/cars/public');
-        console.log(car);
         return car;
     },
 
     // Get single public car (no auth)
     getPublicCarById: async (id) => {
         const car = await axios.get(`/cars/public/${id}`);
-        console.log("car",car);
         return car;
     },
 
@@ -22,7 +20,8 @@ export const carsAPI = {
 
     // Get single customer car (auth required)
     getCustomerCarById: async (id) => {
-        return await axios.get(`/cars/customer/${id}`);
+        const car =await axios.get(`/cars/customer/${id}`)
+        return car;
     },
 
     // Search cars with filters (auth required)
