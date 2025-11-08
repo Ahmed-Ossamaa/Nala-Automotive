@@ -6,7 +6,7 @@ const { protect } = require('../middleWare/authMW');
 // Public routes
 router.get('/public', carController.getPublicCars);
 router.get('/public/:id', carController.getPublicCarById);
-router.patch('/public/:id/view', carController.incrementCarView);
+router.patch('/public/:id/view', carController.inCarViews);
 
 // Customer routes
 router.use(protect);

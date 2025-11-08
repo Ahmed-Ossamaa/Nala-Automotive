@@ -5,7 +5,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const ApiError = require('./utils/ApiError');
 const errorHandler = require('./middleWare/errorHandler');
 const authRoute = require('./routes/auth');
@@ -22,13 +22,13 @@ const app = express();
 // Middlewares
 // =============================
 app.use(cors({
-    origin:process.env.CLIENT_URL ||'http://localhost:5173', 
-    credentials: true
+    origin: process.env.CLIENT_URL || 'http://localhost:5173', 
+    // credentials: true
 }));
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-app.use(cookieParser());
+// app.use(cookieParser());
 
 
 // =============================

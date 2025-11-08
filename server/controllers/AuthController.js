@@ -11,19 +11,20 @@ class AuthController {
         }
 
         const { accessToken, refreshToken, user } = await authService.register(req.body);
+        //will use local storage since brwosers block 3rd party cookies by default from cross origin requests
 
         // Set JWT in cookie
-        res.cookie('token', accessToken, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'none',
-            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-        });
+        // res.cookie('token', accessToken, {
+        //     httpOnly: true,
+        //     secure: process.env.NODE_ENV === 'production',
+        //     sameSite: 'none',
+        //     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        // });
 
         res.status(201).json({
             success: true,
             message: 'User registered successfully',
-            data: { user },
+            data: { user, accessToken, refreshToken },
         });
     });
 
@@ -37,26 +38,45 @@ class AuthController {
         const { accessToken, refreshToken, user } = await authService.login(email, password);
 
         // Set JWT in cookie
-        res.cookie('token', accessToken, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'none',
-            maxAge: 7 * 24 * 60 * 60 * 1000,
-        });
+        // res.cookie('token', accessToken, {
+        //     httpOnly: true,
+        //     secure: process.env.NODE_ENV === 'production',
+        //     sameSite: 'none',
+        //     maxAge: 7 * 24 * 60 * 60 * 1000,
+        // });
 
         res.status(200).json({
             success: true,
             message: 'Login successful',
-            data: { user },
+            data: { user, accessToken, refreshToken },
+        });
+    });
+
+    // Refresh token
+    refreshToken = asyncHandler(async (req, res) => {
+        const { refreshToken } = req.body;
+        if (!refreshToken) {
+            throw ApiError.badRequest('Refresh token is required');
+        }
+
+        const { accessToken, refreshToken: newRefreshToken, user } = await authService.refreshTokens(refreshToken);
+        res.status(200).json({
+            success: true,
+            message: 'Token refreshed successfully',
+            data: {
+                user,
+                accessToken,
+                refreshToken: newRefreshToken, n
+            },
         });
     });
 
     // Logout user
     logout = asyncHandler(async (req, res) => {
-        res.cookie('token', '', {
-            httpOnly: true,
-            expires: new Date(0),
-        });
+        // res.cookie('token', '', {
+        //     httpOnly: true,
+        //     expires: new Date(0),
+        // });
 
         res.status(200).json({
             success: true,

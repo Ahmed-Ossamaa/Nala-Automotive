@@ -10,8 +10,8 @@ class CarService extends BaseService {
     // Get cars for public view (limited info)
     async getPublicCars() {
         return await this.findAll(
-            { status: 'available' },
-            'brand model year thumbnail images basicDescription createdAt'
+            { status: { $in: ['available', 'sold'] } },
+            'brand model year thumbnail images basicDescription createdAt status'
         );
     }
 

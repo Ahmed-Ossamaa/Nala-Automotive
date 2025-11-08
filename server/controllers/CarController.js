@@ -63,25 +63,24 @@ class CarController {
         });
     });
 
-    async incrementCarView(req, res) {
-        try {
+    inCarViews = asyncHandler(async (req, res) => {
             const { id } = req.params;
             const car = await Car.findByIdAndUpdate(
                 id,
-                { $inc: { views: 1 } }, 
-                { new: true } 
+                { $inc: { views: 1 } },
+                { new: true }
             );
 
             if (!car) {
-                return res.status(404).json({ success: false, message: 'Car not found' });
+                return res.status(404).json({ success: false, message: 'Car not found...' });
             }
+            res.status(200).json({
+                 success: true,
+                 data: { newViewCount: car.views }
+    });
 
-            res.status(200).json({ success: true, newViewCount: car.views });
+    });
 
-        } catch (error) {
-            res.status(500).json({ success: false, message: error.message });
-        }
-    }
 }
 
 module.exports = new CarController();
