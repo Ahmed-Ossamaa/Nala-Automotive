@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { usePublicCars } from '../../hooks/useCars';
 import { Container } from '../../components/layout/container';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
@@ -8,8 +8,13 @@ import { useAuth } from '../../hooks/useAuth';
 export const CarsList = () => {
     const { data, isLoading, error } = usePublicCars();
     const { user } = useAuth();
-
+    const Navigate = useNavigate();
     const cars = data?.data?.cars || [];
+
+    const handleLoginClick = (e) => {
+        e.stopPropagation();
+        Navigate('/login');
+    };
 
     if (isLoading) {
         return (
@@ -61,7 +66,7 @@ export const CarsList = () => {
                                             className="w-full h-50 object-contain rounded-lg"
                                         />
                                         <div className={`absolute top-1 -left-4  rounded-full overflow-hidden text-center text-[11px]  font-bold
-                                            text-white py-1 px-3 -rotate-45 shadow-md ${car.status === 'available' ? 'bg-green-600' : 'bg-red-600'}` }>
+                                            text-white py-1 px-3 -rotate-45 shadow-md ${car.status === 'available' ? 'bg-green-600' : 'bg-red-600'}`}>
                                             {car.status.toUpperCase()}
                                         </div>
                                     </div>
@@ -70,7 +75,7 @@ export const CarsList = () => {
                                     <h3 className="text-xl font-semibold mb-2">
                                         {car.brand} {car.model} {car.year}
                                     </h3>
-                                    
+
 
                                     {car.basicDescription && (
                                         <p className="text-gray-600 text-sm mb-4 line-clamp-2">
@@ -79,11 +84,12 @@ export const CarsList = () => {
                                     )}
                                     {!user && (
                                         <div className="pt-4 border-t border-gray-100">
-                                            <Link to="/login">
-                                            <p className="text-primary-600 font-semibold">
+
+                                            <div className="text-primary-600 font-semibold cursor-pointer"
+                                                onClick={handleLoginClick}>
                                                 Login to see price and more details
-                                            </p>
-                                            </Link>
+                                            </div>
+
                                         </div>
                                     )}
 
