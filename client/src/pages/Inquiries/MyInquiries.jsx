@@ -48,12 +48,12 @@ export const MyInquiries = () => {
                                 <div className="flex items-center gap-4">
                                     <img
                                         src={inquiry.car?.thumbnail?.url}
-                                        alt={`${inquiry.car?.make} ${inquiry.car?.model}`}
+                                        alt={`${inquiry.car?.brand} ${inquiry.car?.model}`}
                                         className="w-20 h-20 object-cover rounded-lg"
                                     />
                                     <div>
                                         <h3 className="text-xl font-semibold">
-                                            {inquiry.car?.year} {inquiry.car?.make} {inquiry.car?.model}
+                                            {inquiry.car?.brand} {inquiry.car?.model} {inquiry.car?.year} 
                                         </h3>
                                         <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
                                             <Calendar size={16} />
