@@ -21,7 +21,6 @@ class InquiryController {
     // Get customer's inquiries
     getMyInquiries = asyncHandler(async (req, res) => {
         const inquiries = await inquiryService.getCustomerInquiries(req.user._id);
-        console.log('Cookies:', req.cookies);
         res.status(200).json({
             success: true,
             count: inquiries.length,

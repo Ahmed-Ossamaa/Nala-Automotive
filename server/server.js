@@ -44,6 +44,9 @@ app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/cars',carRoute);
 app.use('/api/v1/inquiries', inquiryRoute);
 app.use('/api/v1/admin', adminRoute);
+app.get('/', (req, res) => {
+    res.send('Welcome to NALA Automotive API');
+})
 
 app.all(/.*/, (req, res, next) => {
     next(ApiError.notFound(`Can't find ${req.originalUrl} on this server`));
