@@ -15,7 +15,9 @@ A modern, full-stack car marketplace platform featuring a clean, responsive Reac
 
 * **Frontend (Vercel):** `https://nala-automotive.vercel.app/`
 * **Backend (Railway):** `nala-automotive.up.railway.app`
-
+* **Admin Account (for testing):
+* E-mail : admin@gmail.com
+* Password : admin123
 ---
 
 ## ✨ Key Features
