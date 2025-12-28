@@ -2,22 +2,29 @@
 
 A modern, full-stack car marketplace platform featuring a clean, responsive React frontend, a secure Node.js & Express backend, and a robust MongoDB database.
 
-[![React][React-shield]][React-url]
-[![Node.js][Node-shield]][Node-url]
-[![Tailwind CSS][Tailwind-shield]][Tailwind-url]
-[![MongoDB][Mongo-shield]][Mongo-url]
-[![Vercel][Vercel-shield]][Vercel-url]
-[![Railway][Railway-shield]][Railway-url]
+[![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+[![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://render.com/)
 
 ---
 
 ## 🚀 Live Demo
 
-* **Frontend (Vercel):** `https://nala-automotive.vercel.app/`
-* **Backend (Railway):** `nala-automotive.up.railway.app`
-* **Admin Account (for testing):
-* E-mail : admin@gmail.com
-* Password : admin123
+Check out the live application:
+
+* **Frontend (Vercel):** [https://nala-automotive.vercel.app/](https://nala-automotive.vercel.app/)
+* **Backend (Render):** [https://nala-automotive.onrender.com](https://nala-automotive.onrender.com)
+
+### 🔑 Admin Account (For Testing)
+Use these credentials to test admin features:
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| **Admin** | `admin@gmail.com` | `admin123` |
+
 ---
 
 ## ✨ Key Features
@@ -26,9 +33,9 @@ A modern, full-stack car marketplace platform featuring a clean, responsive Reac
 * **Access & Refresh Tokens:** Advanced token rotation pattern for persistent, secure user sessions.
 * **Frontend State Management:** Global state (user, auth) managed with **Zustand**.
 * **Modern UI:** Built with **Tailwind CSS** and animated with **Framer Motion**.
-* **Robust Form Validation:** Client-side validation using  **Zod**.
+* **Robust Form Validation:** Client-side validation using **Zod**.
 * **Protected Routes:** Frontend and backend routes are protected based on user authentication and roles.
-* **Car Listings:** Browse available cars.
+* **Car Listings:** Browse available cars with ease.
 * **User Inquiries:** Logged-in users can make inquiries on vehicles.
 * **Static Pages:** Clean, responsive About and Contact pages.
 * **CORS & Security:** Backend is fully configured for cross-domain communication with the frontend.
@@ -50,19 +57,19 @@ This project is a full-stack monorepo with a clear separation of concerns.
 * **Animations:** [Framer Motion](https://www.framer.com/motion/)
 * **Notifications:** [React Hot Toast](https://react-hot-toast.com/)
 
-
 ### Backend
 * **Framework:** [Node.js](https://nodejs.org/) & [Express.js](https://expressjs.com/)
 * **Database:** [MongoDB](https://www.mongodb.com/)
 * **ODM:** [Mongoose](https://mongoosejs.com/)
 * **Authentication:** [JSON Web Token (JWT)](https://jwt.io/)
-* **Middleware:** `cors`, `asyncHandler`,`custom MW`
-*  **Media:** [Cloudinary](https://cloudinary.com/)
+* **Middleware:** `cors`, `asyncHandler`, custom middleware
+* **Media:** [Cloudinary](https://cloudinary.com/)
 
 ### Deployment
-* **Frontend:** [Vercel](https://vercel.com/) 
-* **Backend:** [Railway](https://railway.app/)
+* **Frontend:** [Vercel](https://vercel.com/)
+* **Backend:** [Render](https://render.com/)
 * **Database:** [MongoDB Atlas](https://www.mongodb.com/atlas)
+
 ---
 
 ## 🚀 Getting Started
@@ -76,36 +83,54 @@ To get a local copy up and running, follow these simple steps.
 * A [MongoDB Atlas](https://www.mongodb.com/atlas) account (or a local MongoDB instance)
 * Git
 
-### 1. Clone the Repository
+### Installation
 
+**1. Clone the Repository**
 ```sh
 git clone [https://github.com/Ahmed-Ossamaa/Nala-Automotive.git](https://github.com/Ahmed-Ossamaa/Nala-Automotive.git)
 cd NALA-Automotive
+```
 
-**Navigate to the backend directory:
+**2. Backend Setup: Navigate to the server directory and install dependencies:**
+```sh
 cd server
 npm install
+```
 
-**creat .env file: (in root dir inside the ./server)
+Create a .env file in the ./server root directory:
+```sh
 PORT=5000
-CLIENT_URL=http://localhost:xxxx (ex:5173)
-JWT_SECRET=XXXXXXXXXXXXXXXXXX
-JWT_REFRESH_SECRET=XXXXXXXXXXXXXX
+CLIENT_URL=http://localhost:5173
+JWT_SECRET=your_jwt_secret_here
+JWT_REFRESH_SECRET=your_jwt_refresh_secret_here
 JWT_ACCESS_EXPIRE=30m
 JWT_REFRESH_EXPIRE=5d
-CLOUDINARY_URL=cloudinary://123......:.............@xxxxxxx (for images)
-
-****Navigate to the frontend directory:
-cd client
+CLOUDINARY_URL=cloudinary://key:secret@cloud_name
+```
+**3. Frontend Setup: Navigate to the client directory and install dependencies:**
+```sh
+cd ../client
 npm install
-
-****creat .env file: (in root dir inside the ./client)
+```
+Create a .env file in the ./client root directory:
+```sh
 VITE_API_URL=http://localhost:5000/api/v1
-
-**finally run both with npm run dev
-
-
-
-
-
+```
+**4. Run the Application Open two terminals.**
+<ol>
+  <li>
+    Terminal 1 (Backend):
+    
+    cd server
+    npm run dev
+    
+  </li>
+  <li>
+    Terminal 2 (Frontend):
+    
+    cd client
+    npm run dev
+    
+  </li>
+</ol>
 
