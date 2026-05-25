@@ -48,17 +48,14 @@ axiosInstance.interceptors.response.use(
         const originalRequest = error.config;
         const errorMessage = error.response?.data?.message;
         const status = error.response?.status;
-        // const url = error.config?.url;
 
-        // if (status === 401 && !['/auth/me'].includes(url)) {
-        //     window.location.href = '/login';
-        // }
         if (status === 401 && errorMessage === 'Invalid or expired token' && !originalRequest._retry) {
             if (isRefreshing) {
                 // If a refresh is already in progress, queue this request
                 return new Promise((resolve, reject) => {
                     failedQueue.push({ resolve, reject });
                 }).then(token => {
+                    originalRequest._retry = true;
                     originalRequest.headers.Authorization = `Bearer ${token}`;
                     return axiosInstance(originalRequest);
                 });
