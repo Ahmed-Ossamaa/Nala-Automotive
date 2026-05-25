@@ -73,39 +73,36 @@ export const CarsList = () => {
     return (
         <div className="bg-gray-50 min-h-screen pb-20">
             {/* Header & Filter Section */}
-            <div className=" border-b border-gray-200 pt-10 pb-8 mb-8">
+            <div className=" border-b border-gray-200 pt-8 pb-8 mb-8">
                 <Container>
-                    <div className="max-w-3xl mb-10">
-                        <h1 className="text-2xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
-                            Premium Inventory
-                        </h1>
-                        <p className="text-lg text-gray-600 leading-relaxed">
+                    <div className=" mb-4 text-center">
+                        <h1 className="text-lg md:text-2xl font-semibold  md:font-bold leading-relaxed">
                             Explore our carefully chosen luxury and sport cars.
-                        </p>
+                        </h1>
                     </div>
                     
                     {/* Search */}
-                    <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row gap-4 md:items-center w-full">
+                    <div className="bg-gray-100 px-4 py-2 rounded-2xl shadow-sm  flex flex-col md:flex-row gap-4 md:items-center w-full">
                         <div className="relative flex-1">
                             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                             <input
-                                type="text"
+                                type="search"
                                 name="brand"
                                 value={filters.brand}
                                 onChange={handleFilterChange}
                                 placeholder="Brand (e.g. Porsche)"
-                                className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
+                                className="w-full pl-11 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
                             />
                         </div>
                         <div className="relative flex-1">
                             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                             <input
-                                type="text"
+                                type="search"
                                 name="model"
                                 value={filters.model}
                                 onChange={handleFilterChange}
                                 placeholder="Model (e.g. 911)"
-                                className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
+                                className="w-full pl-11 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
                             />
                         </div>
                         <div className="relative md:w-48">
@@ -117,7 +114,7 @@ export const CarsList = () => {
                                 value={filters.year}
                                 onChange={handleFilterChange}
                                 placeholder="Year"
-                                className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
+                                className="w-full pl-11 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
                             />
                         </div>
                     </div>
