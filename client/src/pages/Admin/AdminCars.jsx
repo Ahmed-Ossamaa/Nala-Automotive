@@ -97,8 +97,8 @@ export const AdminCars = () => {
             </div>
 
             {/* Cars Table */}
-            <div className=" rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-                <table className="w-full">
+            <div className="rounded-lg shadow-sm border border-gray-200 overflow-x-auto">
+                <table className="w-full min-w-[800px]">
                     <thead className="bg-gray-50 border-b border-gray-200">
                         <tr>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Car</th>
@@ -107,7 +107,7 @@ export const AdminCars = () => {
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Profit</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Views</th>
-                            <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
+                            <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase">Actions</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
@@ -150,8 +150,8 @@ export const AdminCars = () => {
                                 </td>
                                 <td className="px-6 py-4">
                                     <div className="flex items-center justify-end gap-2">
-                                        <Link to={`/admin/cars/edit/${car._id}`}>
-                                            <Button variant="secondary" size="sm">
+                                        <Link to={`/admin/cars/edit/${car._id}`} >
+                                            <Button variant="secondary" size="sm" title="Edit" className='cursor-pointer'>
                                                 <Edit size={16} />
                                             </Button>
                                         </Link>
@@ -159,7 +159,9 @@ export const AdminCars = () => {
                                             <Button
                                                 variant="primary"
                                                 size="sm"
+                                                title="Mark as Sold"
                                                 onClick={() => {handleMarkAsSold(car._id);}}
+                                                className='cursor-pointer'
                                             >
                                                 <CheckCircle size={16} />
                                             </Button>
@@ -167,6 +169,8 @@ export const AdminCars = () => {
                                         <Button
                                             variant="danger"
                                             size="sm"
+                                            title='Delete'
+                                            className='cursor-pointer'
                                             onClick={() => setDeleteModal({ isOpen: true, car })}
                                         >
                                             <Trash2 size={16} />
