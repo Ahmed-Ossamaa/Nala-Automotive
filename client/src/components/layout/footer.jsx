@@ -43,7 +43,7 @@ export const Footer = () => {
                             </li>
                             <li className="flex items-center gap-2">
                                 <Mail size={16} />
-                                <span><a href="mailto:Amr@NalaAuto.com">Amr@NalaAuto.com</a></span>
+                                <span><a href="mailto:nala.auto.motive@gmail.com">nala.auto.motive@gmail.com</a></span>
                             </li>
                         </ul>
                     </div>
