@@ -8,10 +8,21 @@ class CarService extends BaseService {
     }
 
     // Get cars for public view (limited info)
-    async getPublicCars() {
-        return await this.findAll(
-            { status: { $in: ['available', 'sold'] } },
-            'brand model year thumbnail images basicDescription createdAt status'
+    async getPublicCars(queryParams = {}) {
+        const { brand, model, year, page = 1, limit = 9 } = queryParams;
+        const filter = { status: { $in: ['available', 'sold'] } };
+
+        if (brand) filter.brand = new RegExp(brand, 'i');
+        if (model) filter.model = new RegExp(model, 'i');
+        if (year) filter.year = Number(year);
+
+        return await this.findPaginated(
+            filter,
+            {
+                page,
+                limit,
+                select: 'brand model year thumbnail images basicDescription createdAt status'
+            }
         );
     }
 

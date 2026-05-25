@@ -34,6 +34,31 @@ class BaseService {
     }
   }
 
+  async findPaginated(filter = {}, options = {}) {
+    const { page = 1, limit = 10, select = '', sort = '-createdAt' } = options;
+    const take = Math.min(Number(limit), 100);
+    const skip = (Number(page) - 1) * Number(take);
+
+    try {
+      const [data, total] = await Promise.all([
+        this.model.find(filter).select(select).sort(sort).skip(skip).limit(Number(take)),
+        this.model.countDocuments(filter)
+      ]);
+
+      return {
+        data,
+        pagination: {
+          currentPage: Number(page),
+          totalPages: Math.ceil(total / Number(take)),
+          totalItems: total,
+          limit: Number(take)
+        }
+      };
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async create(data) {
     try {
       return await this.model.create(data);

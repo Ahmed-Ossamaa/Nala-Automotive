@@ -6,12 +6,13 @@ const Car = require('../models/Car');
 class CarController {
     // Get all available cars (public view - limited info)
     getPublicCars = asyncHandler(async (req, res) => {
-        const cars = await carService.getPublicCars();
+        const result = await carService.getPublicCars(req.query);
 
         res.status(200).json({
             success: true,
-            data: { cars },
-            count: cars.length,
+            data: { cars: result.data },
+            count: result.data.length,
+            pagination: result.pagination
         });
     });
 
