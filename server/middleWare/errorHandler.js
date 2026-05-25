@@ -2,8 +2,12 @@ const ApiError = require('../utils/ApiError');
 
 const errorHandler = (err, req, res, next) => {
     if (!(err instanceof ApiError)) {
-        console.error('Unhandled Error:', err);
-        err = ApiError.internal(err.message || 'Internal server error');
+        if (err.name === 'ValidationError' || err.name === 'CastError') {
+            err = ApiError.badRequest(err.message);
+        } else {
+            console.error('Unhandled Error:', err);
+            err = ApiError.internal(err.message || 'Internal server error');
+        }
     }
 
     const statusCode = err.status || 500;
@@ -11,7 +15,7 @@ const errorHandler = (err, req, res, next) => {
 
     console.log(`Error on ${req.method} ${req.originalUrl}: ${err.message}`);
 
-    if ( env === 'development') {
+    if ( env === 'development' && statusCode >= 500) {
         console.log(err.stack);
     }
 

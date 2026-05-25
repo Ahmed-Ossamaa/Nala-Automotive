@@ -12,7 +12,7 @@ class BaseService {
       if (select) query.select(select);
       return await query;
     } catch (error) {
-      throw new Error(`Error finding ${this.model.modelName}: ${error.message}`);
+      throw error;
     }
   }
 
@@ -22,7 +22,7 @@ class BaseService {
       if (select) query.select(select);
       return await query;
     } catch (error) {
-      throw new Error(`Error finding ${this.model.modelName}: ${error.message}`);
+      throw error;
     }
   }
 
@@ -30,7 +30,7 @@ class BaseService {
     try {
       return await this.model.find(filter).select(select).sort(sort);
     } catch (error) {
-      throw new Error(`Error fetching ${this.model.modelName}s: ${error.message}`);
+      throw error;
     }
   }
 
@@ -38,7 +38,7 @@ class BaseService {
     try {
       return await this.model.create(data);
     } catch (error) {
-      throw new Error(`Error creating ${this.model.modelName}: ${error.message}`);
+      throw error;
     }
   }
 
@@ -50,7 +50,7 @@ class BaseService {
         { new: true, runValidators: true }
       );
     } catch (error) {
-      throw new Error(`Error updating ${this.model.modelName}: ${error.message}`);
+      throw error;
     }
   }
 
@@ -58,7 +58,7 @@ class BaseService {
     try {
       return await this.model.findByIdAndDelete(id);
     } catch (error) {
-      throw new Error(`Error deleting ${this.model.modelName}: ${error.message}`);
+      throw error;
     }
   }
 
@@ -66,7 +66,7 @@ class BaseService {
     try {
       return await this.model.countDocuments(filter);
     } catch (error) {
-      throw new Error(`Error counting ${this.model.modelName}s: ${error.message}`);
+      throw error;
     }
   }
 }

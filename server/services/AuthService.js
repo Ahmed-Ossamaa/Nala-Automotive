@@ -9,7 +9,7 @@ class AuthService extends BaseService {
     }
 
     // ----------------------------
-    // 🔐 TOKEN MANAGEMENT
+    // TOKEN MANAGEMENT
     // ----------------------------
 
     generateAccessToken(userId) {
@@ -89,7 +89,7 @@ class AuthService extends BaseService {
     }
 
     // ----------------------------
-    // ⚙️ USER OPERATIONS
+    // USER OPERATIONS
     // ----------------------------
 
     async updateProfile(userId, updateData) {

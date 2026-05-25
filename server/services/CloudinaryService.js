@@ -39,7 +39,7 @@ class CloudinaryService {
     async deleteImage(publicId) {
         try {
             const result = await cloudinary.uploader.destroy(publicId);
-            if (result.result !== 'ok') {
+            if (result.result !== 'ok' && result.result !== 'not found') {
                 throw new Error('Image deletion failed');
             }
             return result;

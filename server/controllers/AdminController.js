@@ -62,8 +62,7 @@ class AdminController {
         const car = await carService.createCar({
             ...data,
             thumbnail,
-            images,
-            createdBy: req.user._id
+            images
         });
         res.status(201).json({
             success: true,
@@ -82,18 +81,17 @@ class AdminController {
         let thumbnail = existingCar.thumbnail;
         let images = existingCar.images;
 
+        let oldThumbnail = thumbnail;
+        let oldImages = images;
+
         // Replace thumbnail if a new one is uploaded
         if (req.files?.thumbnail?.[0]) {
-            if (thumbnail?.publicId) await CloudinaryService.deleteImage(thumbnail.publicId);
             const buffer = req.files.thumbnail[0].buffer;
             thumbnail = await CloudinaryService.uploadImage(buffer, 'car-resale/thumbnails');
         }
 
         // Replace images if new ones are uploaded
         if (req.files?.images?.length) {
-            if (images?.length > 0) {
-                await CloudinaryService.deleteMultipleImages(images.map(img => img.publicId));
-            }
             const buffers = req.files.images.map(file => file.buffer);
             images = await CloudinaryService.uploadMultipleImages(buffers, 'car-resale/images');
         }
@@ -101,9 +99,17 @@ class AdminController {
         const updatedCar = await carService.updateCar(id, {
             ...req.body,
             thumbnail,
-            images,
-            updatedBy: req.user._id,
+            images
         });
+
+        // Delete old images only after successful database update
+        if (req.files?.thumbnail?.[0] && oldThumbnail?.publicId) {
+            await CloudinaryService.deleteImage(oldThumbnail.publicId).catch(console.error);
+        }
+
+        if (req.files?.images?.length && oldImages?.length > 0) {
+            await CloudinaryService.deleteMultipleImages(oldImages.map(img => img.publicId)).catch(console.error);
+        }
 
         res.status(200).json({
             success: true,

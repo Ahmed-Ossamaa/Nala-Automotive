@@ -66,7 +66,7 @@ class AuthController {
             data: {
                 user,
                 accessToken,
-                refreshToken: newRefreshToken, n
+                refreshToken: newRefreshToken,
             },
         });
     });
