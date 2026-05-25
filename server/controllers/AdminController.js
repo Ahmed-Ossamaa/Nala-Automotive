@@ -4,6 +4,8 @@ const carService = require('../services/CarService');
 const inquiryService = require('../services/InquiryService');
 const cloudinaryService = require('../services/CloudinaryService');
 const CloudinaryService = require('../services/CloudinaryService');
+const { DEMO_ADMIN } = require('../constants/demo-accounts');
+
 
 class AdminController {
     // Get dashboard statistics
@@ -132,6 +134,7 @@ class AdminController {
 
     // Delete car (and images)
     deleteCar = asyncHandler(async (req, res) => {
+        if (req.user.id === DEMO_ADMIN) throw ApiError.forbidden('Demo account: Deletion is restricted');
         const car = await carService.findById(req.params.id);
         if (!car) throw ApiError.notFound('Car not found');
 
