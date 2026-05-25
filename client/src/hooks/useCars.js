@@ -6,10 +6,10 @@ import { useEffect } from 'react';
 import axios from '../api/axios';
 
 // Get public cars
-export const usePublicCars = () => {
+export const usePublicCars = (filters = {}) => {
     return useQuery({
-        queryKey: ['publicCars'],
-        queryFn: carsAPI.getPublicCars,
+        queryKey: ['publicCars', filters],
+        queryFn: () => carsAPI.getPublicCars(filters),
         staleTime: 5 * 60 * 1000, // 5 minutes
     });
 };

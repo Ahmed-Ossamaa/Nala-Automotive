@@ -2,8 +2,8 @@ import axios from './axios';
 
 export const carsAPI = {
     // Get public cars (no auth)
-    getPublicCars: async () => {
-        const car = await axios.get('/cars/public');
+    getPublicCars: async (filters) => {
+        const car = await axios.get('/cars/public', { params: filters });
         return car;
     },
 
