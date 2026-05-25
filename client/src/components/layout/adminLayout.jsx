@@ -74,7 +74,7 @@ export const AdminLayout = ({ children }) => {
                             to="/"
                             className="block w-full text-center px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
                         >
-                            Back to Site
+                            Back to Home
                         </Link>
                     </div>
                 </div>

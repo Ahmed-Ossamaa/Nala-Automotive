@@ -5,6 +5,7 @@ import { Button } from '../../components/common/Button';
 import { Badge } from '../../components/common/Badge';
 import { Modal } from '../../components/common/Modal';
 import { MessageSquare, Trash2, Eye, User, Mail, Phone, Calendar } from 'lucide-react';
+import { InquiryDetails } from '../../components/admin/InquiryDetails';
 
 export const AdminInquiries = () => {
     const [statusFilter, setStatusFilter] = useState('');
@@ -14,7 +15,6 @@ export const AdminInquiries = () => {
 
     const [selectedInquiry, setSelectedInquiry] = useState(null);
     const [viewModal, setViewModal] = useState(false);
-    const [adminNotes, setAdminNotes] = useState('');
 
     const inquiries = data?.data?.inquiries || [];
 
@@ -22,11 +22,11 @@ export const AdminInquiries = () => {
         await updateInquiry.mutateAsync({ id, data: { status } });
     };
 
-    const handleSaveNotes = async () => {
+    const handleSaveNotes = async (notes) => {
         if (selectedInquiry) {
             await updateInquiry.mutateAsync({
                 id: selectedInquiry._id,
-                data: { adminNotes },
+                data: { adminNotes: notes },
             });
             setViewModal(false);
             setSelectedInquiry(null);
@@ -41,7 +41,6 @@ export const AdminInquiries = () => {
 
     const openViewModal = (inquiry) => {
         setSelectedInquiry(inquiry);
-        setAdminNotes(inquiry.adminNotes || '');
         setViewModal(true);
     };
 
@@ -232,110 +231,16 @@ export const AdminInquiries = () => {
                 size="lg"
             >
                 {selectedInquiry && (
-                    <div className="space-y-4">
-                        {/* Car Info */}
-                        <div className="flex items-center gap-4 pb-4 border-b">
-                            <img
-                                src={selectedInquiry.car?.thumbnail?.url}
-                                alt={`${selectedInquiry.car?.make} ${selectedInquiry.car?.model}`}
-                                className="w-20 h-20 object-cover rounded-lg"
-                            />
-                            <div>
-                                <h3 className="text-lg font-semibold">
-                                    {selectedInquiry.car?.year} {selectedInquiry.car?.make}{' '}
-                                    {selectedInquiry.car?.model}
-                                </h3>
-                                <p className="text-gray-600">
-                                    ${selectedInquiry.car?.price?.toLocaleString()}
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Customer Info */}
-                        <div>
-                            <h4 className="font-semibold mb-2">Customer Information</h4>
-                            <div className="space-y-2 text-sm">
-                                <p><strong>Name:</strong> {selectedInquiry.customerName}</p>
-                                <p><strong>Email:</strong> {selectedInquiry.customerEmail}</p>
-                                {selectedInquiry.customerPhone && (
-                                    <p><strong>Phone:</strong> {selectedInquiry.customerPhone}</p>
-                                )}
-                                <p>
-                                    <strong>Date:</strong>{' '}
-                                    {new Date(selectedInquiry.createdAt).toLocaleString()}
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Message */}
-                        <div>
-                            <h4 className="font-semibold mb-2">Customer Message</h4>
-                            <div className="bg-gray-50 rounded-lg p-3">
-                                <p className="text-gray-700">{selectedInquiry.message}</p>
-                            </div>
-                        </div>
-
-                        {/* Admin Notes */}
-                        <div>
-                            <h4 className="font-semibold mb-2">Admin Notes</h4>
-                            <textarea
-                                value={adminNotes}
-                                onChange={(e) => setAdminNotes(e.target.value)}
-                                rows={4}
-                                className="input-field"
-                                placeholder="Add notes about this inquiry..."
-                            />
-                        </div>
-
-                        {/* Status Update */}
-                        <div>
-                            <h4 className="font-semibold mb-2">Status</h4>
-                            <div className="flex gap-2">
-                                <Button
-                                    variant={selectedInquiry.status === 'new' ? 'primary' : 'secondary'}
-                                    size="sm"
-                                    onClick={() => handleUpdateStatus(selectedInquiry._id, 'new')}
-                                >
-                                    New
-                                </Button>
-                                <Button
-                                    variant={selectedInquiry.status === 'contacted' ? 'primary' : 'secondary'}
-                                    size="sm"
-                                    onClick={() => handleUpdateStatus(selectedInquiry._id, 'contacted')}
-                                >
-                                    Contacted
-                                </Button>
-                                <Button
-                                    variant={selectedInquiry.status === 'closed' ? 'primary' : 'secondary'}
-                                    size="sm"
-                                    onClick={() => handleUpdateStatus(selectedInquiry._id, 'closed')}
-                                >
-                                    Closed
-                                </Button>
-                            </div>
-                        </div>
-
-                        {/* Actions */}
-                        <div className="flex gap-3 pt-4">
-                            <Button
-                                variant="primary"
-                                onClick={handleSaveNotes}
-                                isLoading={updateInquiry.isPending}
-                                className="flex-1"
-                            >
-                                Save Notes
-                            </Button>
-                            <Button
-                                variant="secondary"
-                                onClick={() => {
-                                    setViewModal(false);
-                                    setSelectedInquiry(null);
-                                }}
-                            >
-                                Close
-                            </Button>
-                        </div>
-                    </div>
+                    <InquiryDetails
+                        inquiry={selectedInquiry}
+                        onClose={() => {
+                            setViewModal(false);
+                            setSelectedInquiry(null);
+                        }}
+                        onUpdateStatus={handleUpdateStatus}
+                        onSaveNotes={handleSaveNotes}
+                        isUpdating={updateInquiry.isPending}
+                    />
                 )}
             </Modal>
         </div>
