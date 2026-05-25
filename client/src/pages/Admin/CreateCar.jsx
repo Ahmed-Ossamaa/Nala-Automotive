@@ -7,6 +7,7 @@ import { Input } from '../../components/common/Input';
 import { Select } from '../../components/common/Select';
 import { ImageUpload } from '../../components/common/ImageUpload';
 import { ArrowLeft } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 
 export const CreateCar = () => {
@@ -20,14 +21,19 @@ export const CreateCar = () => {
 
     const formData = new FormData();
 
-    // Add text fields
+    // Add text fields (skip empty strings)
     Object.keys(data).forEach(key => {
-      if (data[key] !== undefined && data[key] !== null) formData.append(key, data[key]);
+      if (data[key] !== undefined && data[key] !== null && data[key] !== '') {
+        formData.append(key, data[key]);
+      }
     });
 
     // Add thumbnail
     if (thumbnail && thumbnail.length > 0) {
       formData.append('thumbnail', thumbnail[0]);
+    } else {
+      toast.error('Thumbnail image is required');
+      return;
     }
 
     // Add images
@@ -36,14 +42,25 @@ export const CreateCar = () => {
         formData.append('images', image);
       });
     }
-    // for (let pair of formData.entries()) {
-    //   console.log(pair[0], pair[1]);
-    // }
+
     try {
       await createCar.mutateAsync(formData);
       navigate('/admin/cars');
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const onInvalid = (errors) => {
+    // Collect all error messages
+    const errorMessages = Object.values(errors).map(err => err.message).filter(Boolean);
+    if (errorMessages.length > 0) {
+      // Showing up to 3 errors
+      const displayErrors = errorMessages.slice(0, 3);
+      const more = errorMessages.length > 3 ? `\n...and ${errorMessages.length - 3} more` : '';
+      toast.error(`Please fix the form errors:\n${displayErrors.join('\n')}${more}`, { duration: 5000 });
+    } else {
+      toast.error('Please fill in all required fields correctly');
     }
   };
 
@@ -62,17 +79,17 @@ export const CreateCar = () => {
         <p className="text-gray-600">Fill in the details to add a new car to inventory</p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="max-w-6xl">
+      <form onSubmit={handleSubmit(onSubmit, onInvalid)} className="max-w-6xl">
         <div className="rounded-lg shadow-sm border border-gray-200 p-6 space-y-6">
           {/* Basic Information */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Basic Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
-                label="brand *"
+                label="Brand *"
                 placeholder="Toyota"
                 error={errors.brand?.message}
-                {...register('brand', { required: 'brand is required' })}
+                {...register('brand', { required: 'Brand is required' })}
               />
               <Input
                 label="Model *"
@@ -85,7 +102,7 @@ export const CreateCar = () => {
                 type="number"
                 placeholder="2020"
                 error={errors.year?.message}
-                {...register('year', { required: 'Year is required', min: 1900 })}
+                {...register('year', { required: 'Year is required', min: { value: 1900, message: 'Year must be after 1900' } })}
               />
               <Input
                 label="Color"
@@ -121,7 +138,7 @@ export const CreateCar = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
               <Input
-                label="Engine Size (CC) "
+                label="Engine Size (CC)"
                 type="number"
                 placeholder="2000"
                 error={errors.engineSize?.message}
@@ -175,7 +192,7 @@ export const CreateCar = () => {
                 type="number"
                 placeholder="25000"
                 error={errors.price?.message}
-                {...register('price', { required: 'Price is required' })}
+                {...register('price', { required: 'Selling price is required' })}
               />
               <Input
                 label="Buying Cost *"
@@ -185,23 +202,20 @@ export const CreateCar = () => {
                 {...register('buyingCost', { required: 'Buying cost is required' })}
               />
               <Input
-                label="maintenance Cost"
+                label="Maintenance Cost"
                 type="number"
-                // value={0}
                 error={errors.maintenanceCosts?.message}
                 {...register('maintenanceCosts')}
               />
               <Input
-                label="parts Cost"
+                label="Parts Cost"
                 type="number"
-                // value={0}
                 error={errors.partsCosts?.message}
                 {...register('partsCosts')}
               />
               <Input
                 label="Other Costs"
                 type="number"
-                // value={0}
                 error={errors.otherCosts?.message}
                 {...register('otherCosts')}
               />
@@ -218,24 +232,23 @@ export const CreateCar = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Description</h3>
             <textarea
-              className="input-field"
+              className="input-field w-full px-4 py-2 border rounded-lg"
               rows={3}
               placeholder="Brief description (visible to guests)"
               {...register('basicDescription')}
             />
             <textarea
-              className="input-field mt-4"
+              className="input-field w-full px-4 py-2 border rounded-lg mt-4"
               rows={5}
               placeholder="Detailed description (visible to logged-in users)"
               {...register('detailedDescription')}
             />
             <textarea
-              className="input-field mt-4"
+              className="input-field w-full px-4 py-2 border rounded-lg mt-4"
               rows={3}
               placeholder="Admin notes"
               {...register('adminNotes')}
             />
-
           </div>
 
           {/* Actions */}
