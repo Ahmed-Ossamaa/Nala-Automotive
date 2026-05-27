@@ -5,7 +5,8 @@ import {
     MessageSquare,
     Settings,
     Menu,
-    X
+    X,
+    BarChart3
 } from 'lucide-react';
 import { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
@@ -16,8 +17,9 @@ export const AdminLayout = ({ children }) => {
     const { user } = useAuth();
 
     const navigation = [
-        { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
+        { name: 'Overview', href: '/admin', icon: LayoutDashboard },
         { name: 'Cars', href: '/admin/cars', icon: Car },
+        { name: 'Analytics', href: '/admin/analytics', icon: BarChart3 },
         { name: 'Inquiries', href: '/admin/inquiries', icon: MessageSquare },
     ];
 

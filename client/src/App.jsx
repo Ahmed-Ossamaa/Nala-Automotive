@@ -23,6 +23,7 @@ import { Profile } from './pages/Profile/Profile';
 
 // Admin Pages
 import { AdminDashboard } from './pages/Admin/AdminDashboard';
+import { Analytics } from './pages/Admin/Analytics';
 import { AdminCars } from './pages/Admin/AdminCars';
 import { CreateCar } from './pages/Admin/CreateCar';
 import { EditCar } from './pages/Admin/EditCar';
@@ -137,6 +138,14 @@ function App() {
             element={
               <AdminRoute>
                 <AdminLayout><AdminDashboard /></AdminLayout>
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/analytics"
+            element={
+              <AdminRoute>
+                <AdminLayout><Analytics /></AdminLayout>
               </AdminRoute>
             }
           />
