@@ -160,7 +160,7 @@ export const AdminCars = () => {
                                                 variant="primary"
                                                 size="sm"
                                                 title="Mark as Sold"
-                                                onClick={() => {handleMarkAsSold(car._id);}}
+                                                onClick={() => { handleMarkAsSold(car._id); }}
                                                 className='cursor-pointer'
                                             >
                                                 <CheckCircle size={16} />

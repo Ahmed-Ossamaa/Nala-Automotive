@@ -125,7 +125,7 @@ export const CarsList = () => {
                 {isLoading ? (
                     <div className="flex flex-col items-center justify-center min-h-[40vh] space-y-4">
                         <LoadingSpinner size="lg" />
-                        <p className="text-gray-500 font-medium">Curating vehicles...</p>
+                        <p className="text-gray-500 font-medium">Loading vehicles...</p>
                     </div>
                 ) : cars.length === 0 ? (
                     <div className="min-h-[40vh] flex items-center justify-center">

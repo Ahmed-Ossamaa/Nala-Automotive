@@ -15,13 +15,14 @@ export const Profile = () => {
     const [showPasswordForm, setShowPasswordForm] = useState(false);
 
     // Profile Form
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset, formState: { isSubmitting: isProfileSubmitting } } = useForm();
 
     // Password Form
     const {
         register: registerPassword,
         handleSubmit: handlePasswordSubmit,
-        reset: resetPassword
+        reset: resetPassword,
+        formState: { isSubmitting: isPasswordSubmitting }
     } = useForm();
 
     // Update form when user loads
@@ -150,7 +151,7 @@ export const Profile = () => {
                                 {/* Action Buttons */}
                                 {isEditing && (
                                     <div className="flex gap-3 pt-4 border-t">
-                                        <Button type="submit" variant="primary" className="flex">
+                                        <Button type="submit" variant="primary" className="flex" isLoading={isProfileSubmitting} loadingText="Updating...">
                                             <Check size={18} className="mr-2 mt-1" />
                                             Save Changes
                                         </Button>
@@ -215,7 +216,9 @@ export const Profile = () => {
                                     <div className="flex gap-3 pt-4 border-t">
                                         <Button type="submit" 
                                         variant="primary" 
-                                        className="flex-2 ">
+                                        className="flex-2 "
+                                        isLoading={isPasswordSubmitting}
+                                        loadingText="Updating...">
                                             <div className="flex mx-auto justify-self-center">
                                             <Check size={18} className="mr-2 mt-1" />
                                             Update Password
