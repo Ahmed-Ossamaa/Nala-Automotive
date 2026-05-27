@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const ApiError = require('../utils/ApiError');
 const authService = require('../services/AuthService');
+const { DEMO_ADMIN } = require('../constants/demo-accounts');
 
 class AuthController {
     // Register new user
@@ -111,6 +112,7 @@ class AuthController {
 
     // Change password
     changePassword = asyncHandler(async (req, res) => {
+        if (req.user.id === DEMO_ADMIN) throw ApiError.forbidden('Demo admin: cannot change password');
         if (!req.user) throw ApiError.unauthorized('User not authenticated');
 
         const { currentPassword, newPassword } = req.body;
