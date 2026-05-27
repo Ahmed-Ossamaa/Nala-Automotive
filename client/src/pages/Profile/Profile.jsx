@@ -214,14 +214,14 @@ export const Profile = () => {
                                     />
 
                                     <div className="flex gap-3 pt-4 border-t">
-                                        <Button type="submit" 
-                                        variant="primary" 
-                                        className="flex-2 "
-                                        isLoading={isPasswordSubmitting}
-                                        loadingText="Updating...">
+                                        <Button type="submit"
+                                            variant="primary"
+                                            className="flex-2 "
+                                            isLoading={isPasswordSubmitting}
+                                            loadingText="Updating...">
                                             <div className="flex mx-auto justify-self-center">
-                                            <Check size={18} className="mr-2 mt-1" />
-                                            Update Password
+                                                <Check size={18} className="mr-2 mt-1" />
+                                                Update Password
                                             </div>
                                         </Button>
                                         <Button
@@ -235,7 +235,7 @@ export const Profile = () => {
                                         >
                                             <div className='mx-auto flex justify-self-center'>
                                                 <X size={18} className="mr-2 mt-1" />
-                                            Cancel
+                                                Cancel
                                             </div>
                                         </Button>
                                     </div>
