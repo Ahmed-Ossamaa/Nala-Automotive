@@ -6,10 +6,12 @@ import { Button } from '../../components/common/Button';
 import { Badge } from '../../components/common/Badge';
 import { Modal } from '../../components/common/Modal';
 import { Plus, Edit, Trash2, CheckCircle, Eye } from 'lucide-react';
+import { Pagination } from '../../components/common/Pagination';
 
 export const AdminCars = () => {
     const [statusFilter, setStatusFilter] = useState('');
-    const { data, isLoading } = useAdminCars({ status: statusFilter });
+    const [page, setPage] = useState(1);
+    const { data, isLoading } = useAdminCars({ status: statusFilter, page, limit: 10 });
     const markAsSold = useMarkCarAsSold();
     const deleteCar = useDeleteCar();
     const [deleteModal, setDeleteModal] = useState({ isOpen: false, car: null });
@@ -37,6 +39,11 @@ export const AdminCars = () => {
             pending: 'warning',
         };
         return <Badge variant={variants[status]}>{status}</Badge>;
+    };
+
+    const handleStatusChange = (status) => {
+        setStatusFilter(status);
+        setPage(1);
     };
 
     if (isLoading) {
@@ -68,28 +75,28 @@ export const AdminCars = () => {
                     <Button
                         variant={statusFilter === '' ? 'primary' : 'secondary'}
                         size="sm"
-                        onClick={() => setStatusFilter('')}
+                        onClick={() => handleStatusChange('')}
                     >
-                        All ({data?.count || 0})
+                        All
                     </Button>
                     <Button
                         variant={statusFilter === 'available' ? 'primary' : 'secondary'}
                         size="sm"
-                        onClick={() => setStatusFilter('available')}
+                        onClick={() => handleStatusChange('available')}
                     >
                         Available
                     </Button>
                     <Button
                         variant={statusFilter === 'sold' ? 'primary' : 'secondary'}
                         size="sm"
-                        onClick={() => setStatusFilter('sold')}
+                        onClick={() => handleStatusChange('sold')}
                     >
                         Sold
                     </Button>
                     <Button
                         variant={statusFilter === 'pending' ? 'primary' : 'secondary'}
                         size="sm"
-                        onClick={() => setStatusFilter('pending')}
+                        onClick={() => handleStatusChange('pending')}
                     >
                         Pending
                     </Button>
@@ -188,6 +195,15 @@ export const AdminCars = () => {
                     </div>
                 )}
             </div>
+
+            {/* Pagination */}
+            {data?.pagination && (
+                <Pagination
+                    currentPage={data.pagination.currentPage}
+                    totalPages={data.pagination.totalPages}
+                    onPageChange={setPage}
+                />
+            )}
 
             {/* Delete Confirmation Modal */}
             <Modal

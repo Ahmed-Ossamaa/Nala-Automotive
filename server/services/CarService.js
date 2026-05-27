@@ -113,7 +113,11 @@ class CarService extends BaseService {
         if (filters.status) {
             query.status = filters.status;
         }
-        return await this.findAll(query);
+        
+        const page = parseInt(filters.page) || 1;
+        const limit = parseInt(filters.limit) || 10;
+
+        return await this.findPaginated(query, { page, limit });
     }
 
     // Admin: Create new car

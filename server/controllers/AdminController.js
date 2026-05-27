@@ -28,11 +28,12 @@ class AdminController {
 
     // Get all cars
     getAllCars = asyncHandler(async (req, res) => {
-        const cars = await carService.getAllCars(req.query);
+        const result = await carService.getAllCars(req.query);
         res.status(200).json({
             success: true,
-            count: cars.length,
-            data: cars
+            count: result.data.length,
+            data: result.data,
+            pagination: result.pagination
         });
     });
 
